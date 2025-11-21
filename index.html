@@ -35,6 +35,7 @@
         .navbar {
             backdrop-filter: blur(10px);
             background: rgba(240, 240, 240, 0.95) !important;
+            color: var(--bs-dark-blue) !important;
         }
         .navbar-brand {
             font-weight: 700;
@@ -46,16 +47,18 @@
             padding: 0.5rem 1rem;
             border-radius: 8px;
             margin: 0 2px;
+            color: var(--bs-dark-blue) !important;
         }
         .navbar-nav .nav-link:hover {
             color: var(--bs-info) !important;
-            background: rgba(13, 202, 240, 0.1);
+            background: #4dd0e190 !important;
+            color: var(--bs-dark-blue) !important;
         }
 
         /* Hero Bölümü: Slider */
         #hero {
             background: var(--bs-gradient-ocean);
-            min-height: 100vh;
+            min-height: 60vh;
             padding-top: 56px;
             display: flex; 
             align-items: center;
@@ -437,9 +440,9 @@
 <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="70">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav">
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm" id="mainNav">
         <div class="container">
-            <a class="navbar-brand text-light" href="#hero">
+            <a class="navbar-brand" href="#hero">
                 <i class="bi bi-water me-2"></i>YALOVA ÜNİVERSİTESİ
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
