@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yalova Üniversitesi - Fiber Tekne ve Kompozit Kalıp Teknolojileri</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Tema Renkleri - Denizcilik Teması */
+        :root {
+            --bs-primary: #0d6efd;
+            --bs-secondary: #1e3a5f;
+            --bs-info: #0dcaf0;
+            --bs-accent: #00b4d8;
+            --bs-dark-blue: #023e8a;
+            --bs-light-bg: #f8fafc;
+            --bs-shadow-color: rgba(0, 0, 0, 0.08);
+            --bs-shadow-hover: rgba(13, 110, 253, 0.15);
+            --bs-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --bs-gradient-ocean: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+        }
+
+        /* Genel Stil Ayarları */
+        body {
+            padding-top: 10px;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bs-light-bg);
+            color: #1e293b;
+        }
+
+        /* Navbar Özelleştirme */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 58, 95, 0.95) !important;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .navbar-nav .nav-link {
+            transition: var(--bs-transition);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0 2px;
+        }
+        .navbar-nav .nav-link:hover {
+            color: var(--bs-info) !important;
+            background: rgba(13, 202, 240, 0.1);
+        }
+
+        /* Hero Bölümü: Slider */
+        #hero {
+            background: var(--bs-gradient-ocean);
+            min-height: 100vh;
+            padding-top: 56px;
+            display: flex; 
+            align-items: center;
+        }
+        
+        /* SLIDER STİLLERİ */
+        .carousel-item {
+            height: 100vh;
+            min-height: 350px;
+            background-position: center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .carousel-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(2, 62, 138, 0.7) 0%, rgba(0, 119, 182, 0.5) 100%);
+        }
+        
+        .carousel-caption {
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-caption-overlay {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            padding: 40px 50px;
+            border-radius: 20px;
+            max-width: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-caption h1 {
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 6px;
+        }
+
+        /* Başlıklar ve HR */
+        h1, h2, h5 {
+            color: var(--bs-dark-blue);
+        }
+        
+        .section-title {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        hr.modern-hr {
+            border: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--bs-accent), var(--bs-primary), var(--bs-info));
+            width: 100px;
+            margin: 20px 0 40px 0;
+            opacity: 1;
+            border-radius: 4px;
+        }
+        
+        /* MODERN KARTLAR */
+        .elevated-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--bs-shadow-color);
+            transition: var(--bs-transition);
+            overflow: hidden; 
+            position: relative; 
+            z-index: 1;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .elevated-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--bs-shadow-hover);
+        }
+
+        /* Kart Overlay */
+        .elevated-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.95) 100%);
+            z-index: 0; 
+            border-radius: 16px;
+        }
+
+        .elevated-card > * {
+            position: relative;
+            z-index: 2; 
+        }
+
+        /* İkon Stili */
+        .elevated-card i.display-4 {
+            background: var(--bs-gradient-ocean);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* PROJE KARTLARI - Denizcilik Görselleri */
+        #proje .col-md-4:nth-child(1) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80');
+        }
+        #proje .col-md-4:nth-child(2) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80');
+        }
+        #proje .col-md-4:nth-child(3) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80');
+        }
+
+        /* EĞİTİM KARTLARI - Tekne İmalatı */
+        #egitimler .col:nth-child(1) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=800&q=80');
+        }
+        #egitimler .col:nth-child(2) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80');
+        }
+        #egitimler .col:nth-child(3) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80');
+        }
+        
+        /* KAZANIM KARTLARI - Yat İmalatı */
+        #kazanimlar .col-md-6:nth-child(1) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=800&q=80');
+        }
+        #kazanimlar .col-md-6:nth-child(2) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&q=80');
+        }
+        
+        /* SPONSORLUK KARTLARI */
+        #sponsor .col:nth-child(1) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80');
+        }
+        #sponsor .col:nth-child(2) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80');
+        }
+        #sponsor .col:nth-child(3) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80');
+        }
+        #sponsor .col:nth-child(4) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1581093458791-9d15482442f6?w=800&q=80');
+        }
+        #sponsor .col:nth-child(5) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80');
+        }
+        #sponsor .col:nth-child(6) .elevated-card {
+            background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80');
+        }
+
+        /* İLETİŞİM BÖLÜMÜ */
+        #iletisim {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+        }
+
+        #iletisim .col-lg-6:nth-child(1) {
+            background: linear-gradient(rgba(30, 58, 95, 0.85), rgba(30, 58, 95, 0.85)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80') no-repeat center center;
+            background-size: cover;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #iletisim .col-lg-6:nth-child(2) {
+            background: linear-gradient(rgba(30, 58, 95, 0.85), rgba(30, 58, 95, 0.85)), 
+                        url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=800&q=80') no-repeat center center;
+            background-size: cover;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* MODERN BUTONLAR */
+        .btn-modern {
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: var(--bs-transition);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-modern::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--bs-gradient-ocean);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+            color: white;
+        }
+
+        .btn-info:hover {
+            color: white;
+        }
+        
+        /* İletişim İkon Stilleri */
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--bs-info);
+            margin-right: 10px;
+        }
+
+        /* Section Stilleri */
+        section {
+            position: relative;
+        }
+
+        .bg-light {
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%) !important;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--bs-transition);
+            text-decoration: none;
+            animation: whatsapp-pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            color: #fff;
+        }
+
+        .whatsapp-float i {
+            line-height: 1;
+        }
+
+        /* WhatsApp Tooltip */
+        .whatsapp-float::after {
+            content: "Bize Yazın!";
+            position: absolute;
+            right: 70px;
+            background: #1e3a5f;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--bs-transition);
+            pointer-events: none;
+        }
+
+        .whatsapp-float::before {
+            content: "";
+            position: absolute;
+            right: 62px;
+            border: 8px solid transparent;
+            border-left-color: #1e3a5f;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--bs-transition);
+        }
+
+        .whatsapp-float:hover::after,
+        .whatsapp-float:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes whatsapp-pulse {
+            0% {
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0.1);
+            }
+            100% {
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1b2a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Ayarlar */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            #hero, .carousel-item {
+                min-height: 80vh;
+            }
+            .carousel-caption-overlay {
+                padding: 25px 30px;
+                max-width: 95%;
+            }
+            .carousel-caption h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+            .whatsapp-float::after,
+            .whatsapp-float::before {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="70">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-light" href="#hero">
+                <i class="bi bi-water me-2"></i>YALOVA ÜNİVERSİTESİ
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#proje">Proje</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#egitimler">Eğitimler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kazanimlar">Kazanımlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sponsor">Sponsorluk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="page-content-wrapper">
+
+        <!-- Hero Slider -->
+        <header id="hero">
+            <div id="projectCarousel" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Slide 1: Lüks Yat -->
+                    <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1920&q=80');">
+                        <div class="carousel-caption">
+                            <div class="carousel-caption-overlay">
+                                <h1 class="display-3 fw-bolder mb-3 text-white">FİBER TEKNE VE KOMPOZİT KALIP TEKNOLOJİLERİ</h1>
+                                <p class="lead mb-4 fs-5">Üretimin Geleceğine Yön Veren Uygulamalı Önlisans Programı ve Atölye Projesi</p>
+                                <a href="#sponsor" class="btn btn-info btn-modern btn-lg me-2"><i class="bi bi-stars me-2"></i>Sponsor Olun</a>
+                                <a href="#proje" class="btn btn-outline-light btn-modern btn-lg">Daha Fazla Bilgi</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Tekne İmalatı -->
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&q=80');">
+                         <div class="carousel-caption">
+                            <div class="carousel-caption-overlay">
+                                <h1 class="display-3 fw-bolder mb-3 text-white">UYGULAMALI EĞİTİMLE SEKTÖRE UZMAN TEKNİKER</h1>
+                                <p class="lead mb-4 fs-5">Gerçek projelerde yer alarak endüstriyel deneyim kazanın</p>
+                                <a href="#egitimler" class="btn btn-info btn-modern btn-lg"><i class="bi bi-mortarboard me-2"></i>Eğitimleri Keşfet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Marina -->
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80');">
+                        <div class="carousel-caption">
+                            <div class="carousel-caption-overlay">
+                                <h1 class="display-3 fw-bolder mb-3 text-white">SANAYİ İLE İŞ BİRLİĞİ VE GÜÇLÜ PARTNERLİKLER</h1>
+                                <p class="lead mb-4 fs-5">TÜBİTAK Projeleri ve Nitelikli Stajyer Havuzuna Erişin</p>
+                                <a href="#sponsor" class="btn btn-info btn-modern btn-lg"><i class="bi bi-handshake me-2"></i>Ortaklık İmkanları</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Proje Bölümü -->
+        <section id="proje" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="text-center section-title">PROJENİN AMACI</h2>
+                <hr class="modern-hr mx-auto">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="elevated-card p-4 text-center h-100">
+                            <i class="bi bi-person-workspace display-4 mb-3"></i>
+                            <h5 class="fw-bold">Uzman Tekniker Yetiştirme</h5>
+                            <p class="text-muted mb-0">Kompozit malzeme ve tekne yapım teknolojilerinde uzman teknikerler yetiştirmek.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="elevated-card p-4 text-center h-100">
+                            <i class="bi bi-diagram-3-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Sanayi İş Birliği</h5>
+                            <p class="text-muted mb-0">Üniversite-sanayi iş birliğini güçlendirmek ve sektörel rekabet gücüne katkı sağlamak.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="elevated-card p-4 text-center h-100">
+                            <i class="bi bi-tools display-4 mb-3"></i>
+                            <h5 class="fw-bold">Uygulamalı Eğitim</h5>
+                            <p class="text-muted mb-0">Tasarım (CAD), kalıp imalatı ve fiber tekne üretim süreçlerini uygulamalı öğretmek.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eğitimler Bölümü -->
+        <section id="egitimler" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center section-title">ATÖLYEDE VERİLECEK EĞİTİMLER</h2>
+                <hr class="modern-hr mx-auto">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="elevated-card h-100 p-4">
+                            <h5 class="fw-bold mb-3" style="color: var(--bs-dark-blue);"><i class="bi bi-gear-fill me-2 text-info"></i>Temel Üretim</h5>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Fiber tekne imalatı</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Kompozit kalıp tasarımı ve üretimi</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Laminasyon & infüzyon teknikleri</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="elevated-card h-100 p-4">
+                            <h5 class="fw-bold mb-3" style="color: var(--bs-dark-blue);"><i class="bi bi-journal-check me-2 text-info"></i>Kalite ve Proje</h5>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Malzeme testleri ve kalite kontrol</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Üretim simülasyonları</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Sektör firmalarıyla ortak proje ve uygulamalar</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="elevated-card h-100 p-4">
+                            <h5 class="fw-bold mb-3" style="color: var(--bs-dark-blue);"><i class="bi bi-hammer me-2 text-info"></i>Yan Uzmanlıklar</h5>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Fiberglas ürün çalışmaları</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Mekanik Aksam ve Marangozluk İşleri</li>
+                                <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Alternatif ürün araştırmaları</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kazanımlar Bölümü -->
+        <section id="kazanimlar" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="text-center section-title">ÖĞRENCİ KAZANIMLARI</h2>
+                <hr class="modern-hr mx-auto">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start elevated-card p-4 h-100">
+                            <div class="me-4">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: var(--bs-gradient-ocean);">
+                                    <i class="bi bi-rocket-takeoff-fill text-white fs-3"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Gerçek Üretim Deneyimi</h5>
+                                <p class="mb-0 text-muted">Bir ürünün fikirden üretime tüm aşamalarına bizzat katılır, ileri seviye el becerisi kazanır.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start elevated-card p-4 h-100">
+                            <div class="me-4">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: var(--bs-gradient-ocean);">
+                                    <i class="bi bi-building text-white fs-3"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Endüstriye Hazırlık</h5>
+                                <p class="mb-0 text-muted">Endüstriyel çalışma ortamını deneyimler, hızla büyüyen denizcilik sektörüne nitelikli eleman olarak katılır.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsorluk Bölümü -->
+        <section id="sponsor" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center section-title">SPONSORLUK AVANTAJLARI</h2>
+                <hr class="modern-hr mx-auto">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4" style="border-left: 4px solid var(--bs-info);">
+                            <i class="bi bi-bookmark-star-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Kalıcı Marka Prestiji</h5>
+                            <p class="text-muted mb-0">Atölye girişinde, ekipman etiketlerinde ve laboratuvar tabelasında <strong>kalıcı görünürlük</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4">
+                            <i class="bi bi-briefcase-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Proje Ortaklığı (TÜBİTAK)</h5>
+                            <p class="text-muted mb-0"><strong>TÜBİTAK</strong> veya benzeri programlarda ortak başvuru imkanı ve proje geliştirme fırsatı.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4">
+                            <i class="bi bi-person-lines-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Öğrenci ve Stajyerler</h5>
+                            <p class="text-muted mb-0">Dönemlik staj, projeler ve işe alım için <strong>yetenek havuzuna</strong> doğrudan erişim.</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4">
+                            <i class="bi bi-flask-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Ürün Test ve Analiz</h5>
+                            <p class="text-muted mb-0">Kendi reçine, fiber ve kalıp malzemelerinizin öğrenciler tarafından <strong>uygulamalı test sonuçlarına</strong> erişimi.</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4">
+                            <i class="bi bi-mic-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Eğitim ve Workshoplar</h5>
+                            <p class="text-muted mb-0">Firmanızın teknik tanıtımlarını yapmak ve atölye etkinliklerinde <strong>konuşmacı olarak yer alma</strong> imkanı.</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="elevated-card h-100 text-center p-4">
+                            <i class="bi bi-hand-thumbs-up-fill display-4 mb-3"></i>
+                            <h5 class="fw-bold">Kalıcı Kurumsal Bağ</h5>
+                            <p class="text-muted mb-0">Eğitim, danışmanlık gibi konularda firmanızın <strong>öncelikli iş ortağı</strong> olması.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İletişim Bölümü -->
+        <section id="iletisim" class="py-5 text-white">
+            <div class="container">
+                <h2 class="text-center text-white section-title">İLETİŞİM VE BİLGİ</h2>
+                <hr class="modern-hr mx-auto" style="background: linear-gradient(90deg, #00b4d8, #0dcaf0, #48cae4);">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <h5 class="text-info mb-4"><i class="bi bi-telephone-fill contact-icon"></i>İrtibat Kişileri</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 p-3 rounded" style="background: rgba(255,255,255,0.05);">
+                                <span class="fw-bold text-info">Okul Müdürü:</span> İsmail Dur<br>
+                                <a href="tel:+905384582777" class="text-white text-decoration-none"><i class="bi bi-telephone me-2"></i>+90 538 458 27 77</a>
+                                <span class="mx-2">|</span>
+                                <a href="mailto:ismail.dur@yalova.edu.tr" class="text-info text-decoration-none"><i class="bi bi-envelope me-1"></i>ismail.dur@yalova.edu.tr</a>
+                            </li>
+                            <li class="mb-3 p-3 rounded" style="background: rgba(255,255,255,0.05);">
+                                <span class="fw-bold text-info">Bölüm Başkanı:</span> Coşkun Sabah<br>
+                                <a href="tel:+905055207511" class="text-white text-decoration-none"><i class="bi bi-telephone me-2"></i>+90 505 520 75 11</a>
+                                <span class="mx-2">|</span>
+                                <a href="mailto:coskun.sabah@yalova.edu.tr" class="text-info text-decoration-none"><i class="bi bi-envelope me-1"></i>coskun.sabah@yalova.edu.tr</a>
+                            </li>
+                            <li class="mb-3 p-3 rounded" style="background: rgba(255,255,255,0.05);">
+                                <span class="fw-bold text-info">Program Sorumlusu:</span> Meltem Sözbilir<br>
+                                <a href="tel:+905378581721" class="text-white text-decoration-none"><i class="bi bi-telephone me-2"></i>+90 537 858 17 21</a>
+                                <span class="mx-2">|</span>
+                                <a href="mailto:meltem.sozbilir@yalova.edu.tr" class="text-info text-decoration-none"><i class="bi bi-envelope me-1"></i>meltem.sozbilir@yalova.edu.tr</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6 text-center d-flex flex-column justify-content-center">
+                        <h5 class="text-info mb-4"><i class="bi bi-share-fill contact-icon"></i>Hızlı Bağlantılar</h5>
+                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                            <a href="https://www.instagram.com/cinarcik_myo_fiber/" target="_blank" class="btn btn-outline-light btn-modern px-4">
+                                <i class="bi bi-instagram me-2"></i>Instagram
+                            </a>
+                            <a href="https://wa.me/905055207511" target="_blank" class="btn btn-success btn-modern px-4">
+                                <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                            </a>
+                        </div>
+                        <p class="mt-4 text-white-50">@cinarcik_myo_fiber</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-4 text-white text-center">
+            <div class="container">
+                <p class="mb-0 text-white-50">&copy; 2025 Yalova Üniversitesi - Çınarcık MYO | Fiber Tekne ve Kompozit Kalıp Teknolojileri Programı</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- WhatsApp Floating Button - Coşkun Sabah -->
+    <a href="https://wa.me/905055207511" target="_blank" class="whatsapp-float" title="WhatsApp ile İletişime Geçin">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
